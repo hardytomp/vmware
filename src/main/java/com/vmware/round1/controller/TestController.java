@@ -6,6 +6,8 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,22 +32,24 @@ public class TestController {
 		return "Hi";
 	}
 
-	
-	public void addCustomer(String  newCustomer){
-		
-		cabBookingService.addCustomer(new Customer(newCustomer,0,0));
+	@PostMapping("/customers")
+	public void addCustomer(@RequestBody Customer  newCustomer){
+		cabBookingService.addCustomer(newCustomer);
 	}
 	
-	public void addNewCab(String  newCab){
-		cabBookingService.addNewCab(new Cab(0,newCab,0,0,null));
+	@PostMapping("/cabs")
+	public void addNewCab(@RequestBody Cab  newCab){
+		cabBookingService.addNewCab(newCab);
 	}
 	
-	
+	@GetMapping("/cabs")
+	@ResponseBody
 	public List<Cab> getAvailableCabs(){
 		return null;
 	}
-	
-	public Cab bookCab(Customer customer){
+	@PostMapping("/book")
+	@ResponseBody
+	public Cab bookCab(@RequestBody Customer customer){
 		return null;
 	}
 	
