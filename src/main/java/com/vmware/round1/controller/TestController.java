@@ -45,12 +45,16 @@ public class TestController {
 	@GetMapping("/cabs")
 	@ResponseBody
 	public List<Cab> getAvailableCabs(){
-		return null;
+		return cabBookingService.getAvailableCabs();
 	}
+	
 	@PostMapping("/book")
 	@ResponseBody
 	public Cab bookCab(@RequestBody Customer customer){
-		return null;
+		Cab bookedCab = cabBookingService.bookCab(customer);
+		if(bookedCab == null)
+			throw new RuntimeException("Cabs not available");
+		return bookedCab;
 	}
 	
 	

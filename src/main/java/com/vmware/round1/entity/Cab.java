@@ -5,6 +5,7 @@ public class Cab {
 	private int id;
 
 	private String modelName;
+	
 	private int locationX;
 	private int locationY;
 	private String driver;
@@ -72,6 +73,44 @@ public class Cab {
 	public void setDriver(String driver) {
 		this.driver = driver;
 	}	
-	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((driver == null) ? 0 : driver.hashCode());
+		result = prime * result + id;
+		result = prime * result + locationX;
+		result = prime * result + locationY;
+		result = prime * result + ((modelName == null) ? 0 : modelName.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cab other = (Cab) obj;
+		if (driver == null) {
+			if (other.driver != null)
+				return false;
+		} else if (!driver.equals(other.driver))
+			return false;
+		if (id != other.id)
+			return false;
+		if (locationX != other.locationX)
+			return false;
+		if (locationY != other.locationY)
+			return false;
+		if (modelName == null) {
+			if (other.modelName != null)
+				return false;
+		} else if (!modelName.equals(other.modelName))
+			return false;
+		return true;
+	}	
 	
 }

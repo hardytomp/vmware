@@ -34,6 +34,7 @@ public class CabBookingServiceImpl implements CabBookingService{
 
 	@Override
 	public void addNewCab(Cab newCab) {
+		System.out.println("Adding new Cab..");
 		cabDao.addCab(newCab);
 		availableCabs.add(newCab);
 		
@@ -48,6 +49,9 @@ public class CabBookingServiceImpl implements CabBookingService{
 	public Cab bookCab(Customer customer) {
 		int nearest = Integer.MAX_VALUE;
 		Cab nearestCab = null ;
+		
+		if(!customerDao.getCustomer().stream().anyMatch(i->customer.equals(i)))
+			return null;
 		
 		for(Cab availCab: availableCabs) {
 			

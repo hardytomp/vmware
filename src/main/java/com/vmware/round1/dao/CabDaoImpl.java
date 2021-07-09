@@ -14,6 +14,7 @@ public class CabDaoImpl implements CabDAO{
 
 	@Override
 	public void addCab(Cab newCab) {
+		System.out.println("Added cabs");
 		cabRepository.add(newCab);
 		
 	}
